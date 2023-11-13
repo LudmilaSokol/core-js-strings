@@ -5,7 +5,7 @@
  *                                                                                           *
  ******************************************************************************************* */
 
-/**
+/** 1
  * Returns the length of the given string.
  *
  * @param {string} value - The input string to calculate the length of.
@@ -19,8 +19,15 @@
  *   getStringLength(null) => 0
  *   getStringLength(undefined) => 0
  */
-function getStringLength(/* value */) {
-  throw new Error('Not implemented');
+function getStringLength(value) {
+  let result;
+  if (typeof value === 'string') {
+    result = value.length;
+  } else {
+    result = 0;
+  }
+  return result;
+  // throw new Error('Not implemented');
 }
 
 /**
