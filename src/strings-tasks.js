@@ -30,7 +30,7 @@ function getStringLength(value) {
   // throw new Error('Not implemented');
 }
 
-/**
+/** 2
  * Returns true if the value is a string, otherwise returns false.
  *
  * @param {string} value - The value to check if it's a string.
@@ -44,11 +44,18 @@ function getStringLength(value) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  let result;
+  if (value === null || value === undefined || typeof value === 'number') {
+    result = false;
+  } else if (typeof value === 'string' || typeof value.valueOf() === 'string') {
+    result = true;
+  } else result = false;
+  return result;
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 3
  * Returns the result of concatenation of two strings.
  *
  * @param {string} value1 - The first string to concatenate.
@@ -60,11 +67,12 @@ function isString(/* value */) {
  *   concatenateStrings('aa', '') => 'aa'.
  *   concatenateStrings('', 'bb') => 'bb'
  */
-function concatenateStrings(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function concatenateStrings(value1, value2) {
+  return value1.concat(value2);
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 4
  * Returns the first character of the given string.
  *
  * @param {string} value - The input string to extract the first character from.
@@ -75,11 +83,12 @@ function concatenateStrings(/* value1, value2 */) {
  *   getFirstChar('cat') => 'c'
  *   getFirstChar('') => ''
  */
-function getFirstChar(/* value */) {
-  throw new Error('Not implemented');
+function getFirstChar(value) {
+  return value.charAt(0);
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 5
  * Removes leading and trailing whitespace characters from the string.
  *
  * @param {string} value - The input string to remove leading and trailing whitespaces from.
@@ -90,11 +99,12 @@ function getFirstChar(/* value */) {
  *   removeLeadingAndTrailingWhitespaces('cat ') => 'cat'
  *   removeLeadingAndTrailingWhitespaces('\t\t\tHello, World! ') => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingAndTrailingWhitespaces(value) {
+  return value.trim();
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 6
  * Removes only leading whitespace characters from the string.
  *
  * @param {string} value - The input string to remove leading whitespaces from.
@@ -105,11 +115,12 @@ function removeLeadingAndTrailingWhitespaces(/* value */) {
  *   removeLeadingWhitespaces('cat ') => 'cat '
  *   removeLeadingWhitespaces('\t\t\tHello, World! ') => 'Hello, World! '
  */
-function removeLeadingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingWhitespaces(value) {
+  return value.trimStart();
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 7
  * Removes only trailing whitespace characters from the string.
  *
  * @param {string} value - The input string to remove trailing whitespaces from.
@@ -120,11 +131,12 @@ function removeLeadingWhitespaces(/* value */) {
  *   removeTrailingWhitespaces('cat ') => 'cat'
  *   removeTrailingWhitespaces('\t\t\tHello, World! ') => '\t\t\tHello, World!'
  */
-function removeTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeTrailingWhitespaces(value) {
+  return value.trimEnd();
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 8
  * Returns a string that is repeated the specified number of times.
  *
  * @param {string} str - The string to repeat.
@@ -137,11 +149,16 @@ function removeTrailingWhitespaces(/* value */) {
  *   repeatString('', 3) => ''
  *   repeatString('abc', -2) => ''
  */
-function repeatString(/* str, times */) {
-  throw new Error('Not implemented');
+function repeatString(str, times) {
+  let result = '';
+  if (times >= 0) {
+    result = str.repeat(times);
+  }
+  return result;
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 9
  * Remove the first occurrence of a substring from a string.
  *
  * @param {string} str - The input string.
@@ -153,11 +170,17 @@ function repeatString(/* str, times */) {
  *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  const posValue = str.indexOf(value);
+  let result;
+  if (posValue < 0) {
+    result = str;
+  } else result = str.slice(0, posValue) + str.slice(value.length + posValue);
+  return result;
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 10
  * Remove the last occurrence of a substring from a string.
  *
  * @param {string} str - The input string.
@@ -169,11 +192,17 @@ function removeFirstOccurrences(/* str, value */) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  const posValue = str.lastIndexOf(value);
+  let result;
+  if (posValue < 0) {
+    result = str;
+  } else result = str.slice(0, posValue) + str.slice(value.length + posValue);
+  return result;
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 11
  * Calculate the sum of character codes of the given string.
  *
  * @param {string} str - The input string.
@@ -185,11 +214,18 @@ function removeLastOccurrences(/* str, value */) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  let sum = 0;
+  if (typeof str === 'string') {
+    for (let i = 0; i < str.length; i += 1) {
+      sum += str[i].charCodeAt();
+    }
+  }
+  return sum;
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 12
  * Checks if a string starts with a specific substring.
  *
  * @param {string} str - The input string.
