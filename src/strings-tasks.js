@@ -298,7 +298,7 @@ function reverseString(str) {
   // throw new Error('Not implemented');
 }
 
-/**
+/** 16
  * Returns a string with characters in alphabetical order.
  *
  * @param {string} str - The input string.
@@ -309,11 +309,12 @@ function reverseString(str) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  return str.split('').sort().join('');
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 17
  * Checks if a given string contains a specified substring.
  *
  * @param {string} str - The input string to search within.
@@ -325,11 +326,12 @@ function orderAlphabetically(/* str */) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  return str.includes(substring);
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 18
  * Returns the number of vowels in the string.
  * Vowels: 'a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'.
  *
@@ -343,11 +345,19 @@ function containsSubstring(/* str, substring */) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'];
+  let count = 0;
+  for (let i = 0; i < str.length; i += 1) {
+    if (vowels.includes(str[i])) {
+      count += 1;
+    }
+  }
+  return count;
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 19
  * Returns true if the string is a palindrome; otherwise false.
  * https://en.wikipedia.org/wiki/Palindrome
  *
@@ -360,11 +370,25 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let result = false;
+  let strNew;
+  let turn = '';
+  const lastСharacter = str[str.length - 1];
+  if (lastСharacter === '!' || lastСharacter === '?') {
+    strNew = str.slice(str.length - 1, 1);
+  } else strNew = str;
+  for (let i = 0; i < strNew.length; i += 1) {
+    turn = strNew[i] + turn;
+  }
+  const uniformFormatStrNew = strNew.toLowerCase().replaceAll(' ', '');
+  const uniformFormatTurn = turn.toLowerCase().replaceAll(' ', '');
+  if (uniformFormatStrNew === uniformFormatTurn) result = true;
+  return result;
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 20
  * Find the longest word in the sentence. If there are multiple longest words,
  * the function returns the first one encountered.
  *
@@ -376,11 +400,20 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  let result;
+  const mass = sentence.split(' ');
+  result = sentence.slice(0, sentence.indexOf(' '));
+  for (let i = 1; i < mass.length; i += 1) {
+    if (result.length < mass[i].length) {
+      result = mass[i];
+    }
+  }
+  return result;
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 21
  * Returns the string where each word is reversed.
  *
  * @param {string} str - The input string.
@@ -390,11 +423,25 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  let result = '';
+  let spacePosition = str.indexOf(' ');
+  let word;
+  let startWord = 0;
+  while (spacePosition > 0) {
+    word = str.slice(startWord, spacePosition);
+    startWord = spacePosition + 1;
+    result = result.concat(' ', word.split('').reverse().join(''));
+    spacePosition = str.indexOf(' ', spacePosition + 1);
+  }
+  spacePosition = str.lastIndexOf(' ');
+  word = str.slice(spacePosition + 1);
+  result = result.concat(' ', word.split('').reverse().join('')).trimStart();
+  return result;
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 22
  * Inverts the case of each character in the given string.
  *
  * @param {string} str - The input string.
@@ -405,11 +452,18 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  let result = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i].charCodeAt() === str[i].toUpperCase().charCodeAt())
+      result = result.concat(str[i].toLowerCase());
+    else result = result.concat(str[i].toUpperCase());
+  }
+  return result;
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 23
  * Returns the result of string template and given parameters firstName and lastName.
  * Please do not use concatenation, use template string :
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings
@@ -422,11 +476,12 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 24
  * Extracts a name from template string 'Hello, First_Name Last_Name!'.
  *
  * @param {string} value - The input value.
@@ -436,11 +491,12 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  return value.slice(7, value.length - 1);
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 25
  * Remove the first and last angle brackets from tag string
  *
  * @param {string} str - The input tag.
@@ -451,11 +507,12 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, -1);
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 26
  * Extracts e-mails from single string with e-mails list delimited by semicolons
  *
  * @param {string} str - The input string.
@@ -470,11 +527,12 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 27
  * Encode specified string with ROT13 cipher
  * See details:  https://en.wikipedia.org/wiki/ROT13
  *
@@ -490,11 +548,78 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const objRot13 = {
+    A: 'N',
+    B: 'O',
+    C: 'P',
+    D: 'Q',
+    E: 'R',
+    F: 'S',
+    G: 'T',
+    H: 'U',
+    I: 'V',
+    J: 'W',
+    K: 'X',
+    L: 'Y',
+    M: 'Z',
+    N: 'A',
+    O: 'B',
+    P: 'C',
+    Q: 'D',
+    R: 'E',
+    S: 'F',
+    T: 'G',
+    U: 'H',
+    V: 'I',
+    W: 'J',
+    X: 'K',
+    Y: 'L',
+    Z: 'M',
+    a: 'n',
+    b: 'o',
+    c: 'p',
+    d: 'q',
+    e: 'r',
+    f: 's',
+    g: 't',
+    h: 'u',
+    i: 'v',
+    j: 'w',
+    k: 'x',
+    l: 'y',
+    m: 'z',
+    n: 'a',
+    o: 'b',
+    p: 'c',
+    q: 'd',
+    r: 'e',
+    s: 'f',
+    t: 'g',
+    u: 'h',
+    v: 'i',
+    w: 'j',
+    x: 'k',
+    y: 'l',
+    z: 'm',
+    ' ': ' ',
+    '!': '!',
+    '?': '?',
+  };
+
+  let result = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] !== objRot13.key) {
+      result = `${result}${objRot13[str[i]]}`;
+    } else {
+      result = `${result}${str[i]}`;
+    }
+  }
+  return result;
+  // throw new Error('Not implemented');
 }
 
-/**
+/** 28
  * Returns playid card id.
  *
  * Playing cards initial deck includes the cards in the following order:
@@ -518,8 +643,63 @@ function encodeToRot13(/* str */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const card = {
+    'A♣': 0,
+    '2♣': 1,
+    '3♣': 2,
+    '4♣': 3,
+    '5♣': 4,
+    '6♣': 5,
+    '7♣': 6,
+    '8♣': 7,
+    '9♣': 8,
+    '10♣': 9,
+    'J♣': 10,
+    'Q♣': 11,
+    'K♣': 12,
+    'A♦': 13,
+    '2♦': 14,
+    '3♦': 15,
+    '4♦': 16,
+    '5♦': 17,
+    '6♦': 18,
+    '7♦': 19,
+    '8♦': 20,
+    '9♦': 21,
+    '10♦': 22,
+    'J♦': 23,
+    'Q♦': 24,
+    'K♦': 25,
+    'A♥': 26,
+    '2♥': 27,
+    '3♥': 28,
+    '4♥': 29,
+    '5♥': 30,
+    '6♥': 31,
+    '7♥': 32,
+    '8♥': 33,
+    '9♥': 34,
+    '10♥': 35,
+    'J♥': 36,
+    'Q♥': 37,
+    'K♥': 38,
+    'A♠': 39,
+    '2♠': 40,
+    '3♠': 41,
+    '4♠': 42,
+    '5♠': 43,
+    '6♠': 44,
+    '7♠': 45,
+    '8♠': 46,
+    '9♠': 47,
+    '10♠': 48,
+    'J♠': 49,
+    'Q♠': 50,
+    'K♠': 51,
+  };
+  return card[value];
+  // throw new Error('Not implemented');
 }
 
 module.exports = {
